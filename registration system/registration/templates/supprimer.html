@@ -1,0 +1,28 @@
+{% load static %}
+
+{% comment %} le 1 c'est pour permettre l'affichage du css {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confirmation de suppression</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/supprimer.css' %}">
+</head>
+<body>
+  <h1>Confirmation de suppression</h1>
+
+  <div class="user-details">
+    <p><strong>ID :</strong> {{ utilisateur.id }}</p>
+    <p><strong>Nom :</strong> {{ utilisateur.nom }}</p>
+    <p><strong>Pseudo :</strong> {{ utilisateur.pseudo }}</p>
+    <p><strong>Email :</strong> {{ utilisateur.email }}</p>
+  </div>
+
+  <form method="post" action="{% url 'supprimer' utilisateur.id %}">
+    {% csrf_token %}
+    <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+    <button type="submit">Confirmer la suppression</button>
+    <a href="{% url 'adminis' %}">Annuler</a>
+  </form>
+</body>
+</html>

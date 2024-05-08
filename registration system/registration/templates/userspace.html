@@ -1,0 +1,24 @@
+{% load static %}
+
+{% comment %} le 1 c'est pour permettre l'affichage du css {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Espace Utilisateur</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/userspace.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue dans votre Espace Utilisateur</h1>
+        <div class="user-profile">
+            <img src="profile-picture.jpg" alt="Profile Picture">
+            <h2>Nom Utilisateur</h2>
+            <p>Email: utilisateur@example.com</p>
+            <p>Adresse: Ville, Pays</p>
+            <button class="edit-profile">Modifier Profil</button>
+            <a href="{% url 'logout' %}" class="logout">Déconnexion</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+
+{% comment %} le 1 c'est pour permettre l'affichage du css {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page d'administration</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+    <h1>Page d'administration</h1>
+    
+    <a href="{% url 'logout' %}" class="logout">Déconnexion</a>
+
+    <!-- Section pour afficher la liste des utilisateurs -->
+    <section id="users">
+        <h2>Liste des utilisateurs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>mdp</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Boucle sur les utilisateurs pour les afficher -->
+                {% for Utilisateur in utilisateurs %}
+                <tr>
+                    <td>{{ Utilisateur.id}}</td>
+                    <td>{{ Utilisateur.nom }}</td>
+                    <td>{{ Utilisateur.pseudo }}</td>
+                    <td>{{ Utilisateur.email }}</td>
+                    <td>{{ Utilisateur.password }}</td>
+                    <td>
+                        <!-- Liens pour modifier et supprimer l'utilisateur -->
+                        <a href="{% url 'modifier' Utilisateur.id %}" class="modifier">modifier</a>
+                        <a href="{% url 'supprimer' Utilisateur.id %}" class="supprimer">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Section pour ajouter un nouvel utilisateur -->
+    <section id="add-user">
+        <h2>Ajouter un nouvel utilisateur</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="name">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="username">Pseudo :</label>
+            <input type="text" id="pseudo" name="pseudo" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </section>
+</body>
+</html>

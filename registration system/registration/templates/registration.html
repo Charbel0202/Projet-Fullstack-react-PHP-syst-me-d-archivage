@@ -1,0 +1,36 @@
+{% load static %}
+
+{% comment %} le 1 c'est pour permettre l'affichage du css {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Création de compte</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Créer un compte</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="nom">Nom:</label>
+      <input type="text" id="nom" name="nom" placeholder="Nom">
+
+      <label for="pseudo">Pseudo:</label>
+      <input type="text" id="pseudo" name="pseudo" placeholder="Pseudo">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Email">
+
+      <label for="password">Mot de passe:</label>
+      <input type="password" id="password" name="password" placeholder="Mot de passe">
+
+      <label for="password">Confirmation du Mot de passe:</label>
+      <input type="password" id="password" name="password" placeholder="Mot de passe">
+
+      <input type="submit" value="Créer un compte">
+    </form>
+    <a href="{% url 'login' %}">Vous avez deja un compte ?</a>
+  </div>
+</body>
+</html>

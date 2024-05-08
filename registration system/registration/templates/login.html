@@ -1,0 +1,27 @@
+{% load static %}
+
+{% comment %} le 1 c'est pour permettre l'affichage du css {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page de connexion</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Connexion</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="username">Nom d'utilisateur:</label>
+      <input type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+
+      <label for="password">Mot de passe:</label>
+      <input type="password" id="password" name="password" placeholder="Mot de passe">
+
+      <input type="submit" value="Se connecter">
+      <a href="{% url 'registration' %}">créer un compte</a>
+    </form>
+  </div>
+</body>
+</html>
